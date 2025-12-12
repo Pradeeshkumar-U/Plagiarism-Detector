@@ -2,7 +2,7 @@
 Plagiarism Detection System
 This project detects similarity between student assignment PDFs. It extracts text from PDF files, computes TF-IDF vectors, and uses cosine similarity to report pairwise similarity percentages. The program produces a CSV report listing suspicious pairs and a short summary of highly similar submissions.
 
-Project Files
+# Project Files
 AssignmentChecker.py — Main Python script that:
 
 Extracts text from PDFs (PyPDF2 for text PDFs; pdf2image + pytesseract for scanned PDFs),
@@ -15,7 +15,7 @@ Writes plagiarism_results.csv and opens it automatically.
 
 submissions/ — Folder where you place all student PDF files to be scanned. (No separate dataset required — the folder itself is the input.)
 
-Features
+# Features
 PDF text extraction: Reads selectable text from digital PDFs with PyPDF2.
 
 OCR support (optional): Uses pdf2image + pytesseract with basic preprocessing to handle scanned/image PDFs.
@@ -30,7 +30,7 @@ Auto-open: Attempts to open the CSV automatically on completion (Windows os.star
 
 Simple thresholds: Configurable high-similarity threshold (default 80%) for quick triage.
 
-Requirements
+# Requirements
 Python 3.8+
 
 System tools (for OCR, optional):
@@ -43,7 +43,7 @@ System tools (for OCR, optional):
 
 pip install PyPDF2 pandas scikit-learn tqdm pdf2image pillow pytesseract opencv-python-headless
 
-Installation & Usage
+# Installation & Usage
 Clone / copy project folder and open it in VS Code.
 
 Create submissions/ folder inside project and add all student PDF files:
