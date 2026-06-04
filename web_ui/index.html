@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraCheck - Plagiarism Detection Dashboard</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-wrapper">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="logo-text">AuraCheck</span>
+                </div>
+                <span class="version-tag">v1.2</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="scan">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <span>Run Scan</span>
+                </button>
+                <button class="nav-item" data-tab="compare">
+                    <i class="fa-solid fa-arrows-left-right"></i>
+                    <span>Compare Documents</span>
+                </button>
+                <button class="nav-item" data-tab="ocr">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>OCR Config</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">AP</div>
+                    <div class="profile-info">
+                        <span class="profile-name">Aakash P.</span>
+                        <span class="profile-role">Academic Admin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-search">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="global-search" placeholder="Search submissions, reports, and authors...">
+                </div>
+                <div class="header-actions">
+                    <div class="system-status">
+                        <span class="status-dot green"></span>
+                        <span class="status-label">System Active</span>
+                    </div>
+                    <button class="action-btn" id="notifications-btn">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="btn-primary" id="header-scan-btn">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Start Batch Scan</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Views Container -->
+            <div class="view-viewport">
+                
+                <!-- VIEW 1: DASHBOARD -->
+                <section class="view-panel active" id="view-dashboard">
+                    <div class="view-header-title">
+                        <div>
+                            <h1>Overview Dashboard</h1>
+                            <p class="subtitle">System diagnostics, similarity scores, and flagged PDF submissions.</p>
+                        </div>
+                        <div class="time-range">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>Semester Fall 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon blue-glow">
+                                <i class="fa-regular fa-file-pdf"></i>
+                            </div>
+                            <div class="metric-data">
+                                <h3>Total PDF files</h3>
+                                <span class="metric-value" id="val-total-files">12</span>
+                            </div>
+                            <div class="metric-trend green-text">
+                                <i class="fa-solid fa-check"></i> Scanned successfully
+                            </div>
+                        </div>
+                        <div class="metric-card warning">
+                            <div class="metric-icon red-glow">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="metric-data">
+                                <h3>Flagged Plagiarism</h3>
+                                <span class="metric-value text-red" id="val-flagged-count">3</span>
+                            </div>
+                            <div class="metric-trend red-text">
+                                <i class="fa-solid fa-arrow-trend-up"></i> Critical pairs detected
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon purple-glow">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+                            <div class="metric-data">
+                                <h3>Average Similarity</h3>
+                                <span class="metric-value" id="val-avg-similarity">19.5%</span>
+                            </div>
+                            <div class="metric-trend green-text">
+                                <i class="fa-solid fa-arrow-trend-down"></i> Normal overlap
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon orange-glow">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <div class="metric-data">
+                                <h3>OCR Engine Triggered</h3>
+                                <span class="metric-value" id="val-ocr-files">4</span>
+                            </div>
+                            <div class="metric-trend text-muted">
+                                Scanned/Image PDFs
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Slider Controls -->
+                    <div class="glass-card threshold-card">
+                        <div class="threshold-header">
+                            <div>
+                                <h3>Plagiarism Sensitivity Threshold</h3>
+                                <p class="card-subtitle">Adjust the similarity percentage that defines suspicious submissions (Cosine TF-IDF match).</p>
+                            </div>
+                            <span class="threshold-badge" id="threshold-val-display">80%</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <span class="slider-label">50%</span>
+                            <input type="range" id="threshold-slider" min="50" max="95" value="80" class="custom-range">
+                            <span class="slider-label">95%</span>
+                        </div>
+                    </div>
+
+                    <!-- Main Grid: Heatmap and Lists -->
+                    <div class="dashboard-layout-grid">
+                        
+                        <!-- Heatmap Container -->
+                        <div class="glass-card col-span-2">
+                            <div class="card-header">
+                                <div>
+                                    <h3>Similarity Matrix</h3>
+                                    <p class="card-subtitle">Pairwise Cosine Similarity Heatmap. Click any cell to inspect details.</p>
+                                </div>
+                                <div class="heatmap-legend">
+                                    <span class="legend-item"><span class="legend-color clean"></span> &lt;50%</span>
+                                    <span class="legend-item"><span class="legend-color warn"></span> 50-80%</span>
+                                    <span class="legend-item"><span class="legend-color alert"></span> &ge;80%</span>
+                                </div>
+                            </div>
+                            <div class="matrix-scroll-wrapper">
+                                <div id="similarity-heatmap" class="heatmap-grid">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flagged Submissions List -->
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <div>
+                                    <h3>Flagged Suspicious Pairs</h3>
+                                    <p class="card-subtitle">Highest similarity pairs exceeding the threshold.</p>
+                                </div>
+                                <span class="badge red-bg" id="flagged-badge">3 Pairs</span>
+                            </div>
+                            <div class="suspicious-list" id="suspicious-pairs-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 2: RUN SCAN -->
+                <section class="view-panel" id="view-scan">
+                    <div class="view-header-title">
+                        <div>
+                            <h1>Batch Process Submissions</h1>
+                            <p class="subtitle">Upload PDF assignments to the submissions folder and run the TF-IDF / OCR scan.</p>
+                        </div>
+                    </div>
+
+                    <div class="scan-workspace">
+                        <div class="glass-card upload-container">
+                            <div class="upload-dropzone" id="dropzone">
+                                <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                                <h3>Drag & Drop Student Assignments</h3>
+                                <p class="text-muted">Supports `.pdf` files. Up to 100MB per batch.</p>
+                                <span class="or-separator">or</span>
+                                <label for="file-upload-input" class="btn-secondary">Browse Files</label>
+                                <input type="file" id="file-upload-input" multiple accept=".pdf" style="display: none;">
+                            </div>
+
+                            <div class="uploaded-list-section">
+                                <div class="list-header">
+                                    <h4>Files in Queue (<span id="queued-count">6</span>)</h4>
+                                    <button class="clear-btn" id="clear-queue-btn">Clear All</button>
+                                </div>
+                                <div class="uploaded-files-list" id="queue-files-list">
+                                    <!-- Populated by JS -->
+                                </div>
+                                <button class="btn-primary w-full" id="run-scan-trigger">
+                                    <i class="fa-solid fa-bolt"></i>
+                                    <span>Run Plagiarism Check</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card console-container">
+                            <div class="card-header">
+                                <h3>Execution Output Log</h3>
+                                <div class="console-actions">
+                                    <span class="status-badge pulse-red hide" id="console-scanning-badge">
+                                        <i class="fa-solid fa-rotate fa-spin"></i> Processing
+                                    </span>
+                                    <button class="icon-btn-text" id="clear-console-btn"><i class="fa-solid fa-eraser"></i></button>
+                                </div>
+                            </div>
+                            <div class="console-body" id="console-output">
+                                <div class="console-line system">&gt;&gt; AuraCheck Engine initialized. Ready to compile submissions.</div>
+                                <div class="console-line system">&gt;&gt; Target Path: submissions/</div>
+                                <div class="console-line system">&gt;&gt; OCR Path: C:\Program Files\Tesseract-OCR\tesseract.exe</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 3: PAIRWISE COMPARE -->
+                <section class="view-panel" id="view-compare">
+                    <div class="view-header-title">
+                        <div>
+                            <h1>Pairwise Comparison Inspector</h1>
+                            <p class="subtitle">Side-by-side inspection of selected student submissions with highlighted matching sequences.</p>
+                        </div>
+                        <button class="btn-secondary" id="export-report-btn">
+                            <i class="fa-solid fa-file-export"></i> Export Analysis
+                        </button>
+                    </div>
+
+                    <div class="comparison-workspace">
+                        <!-- Select Bar -->
+                        <div class="comparison-selectors glass-card">
+                            <div class="selector-field">
+                                <label for="compare-doc1">Document 1</label>
+                                <select id="compare-doc1" class="custom-select">
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                            <div class="comparison-vs-badge">
+                                <span>VS</span>
+                            </div>
+                            <div class="selector-field">
+                                <label for="compare-doc2">Document 2</label>
+                                <select id="compare-doc2" class="custom-select">
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <div class="comparison-stat-pill red-bg" id="comparison-score-pill">
+                                <div class="pill-number" id="compare-score-val">84%</div>
+                                <div class="pill-label">Match</div>
+                            </div>
+                        </div>
+
+                        <!-- Main Split Editor -->
+                        <div class="editor-split-container">
+                            <div class="glass-card editor-panel">
+                                <div class="panel-meta">
+                                    <span class="file-name-label" id="doc1-title">document_1.pdf</span>
+                                    <div class="badge-row">
+                                        <span class="pill-badge blue">PyPDF2 Extracted</span>
+                                        <span class="char-count" id="doc1-chars">1,245 chars</span>
+                                    </div>
+                                </div>
+                                <div class="editor-text-body" id="doc1-text-area">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="glass-card editor-panel">
+                                <div class="panel-meta">
+                                    <span class="file-name-label" id="doc2-title">document_2.pdf</span>
+                                    <div class="badge-row">
+                                        <span class="pill-badge orange" id="doc2-engine-badge">OCR (Tesseract)</span>
+                                        <span class="char-count" id="doc2-chars">1,192 chars</span>
+                                    </div>
+                                </div>
+                                <div class="editor-text-body" id="doc2-text-area">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 4: OCR CONFIG -->
+                <section class="view-panel" id="view-ocr">
+                    <div class="view-header-title">
+                        <div>
+                            <h1>OCR Preprocessing Configurator</h1>
+                            <p class="subtitle">Optimize image preprocessing pipelines for scanned PDFs before OCR text extraction.</p>
+                        </div>
+                    </div>
+
+                    <div class="ocr-settings-layout">
+                        <!-- Controls panel -->
+                        <div class="glass-card ocr-controls">
+                            <h3>Preprocessing Pipelines</h3>
+                            <p class="card-subtitle mb-4">Adjust settings to handle handwritten or noisy scanned PDFs. These map to your OpenCV variables.</p>
+
+                            <div class="control-group">
+                                <div class="control-header">
+                                    <label>Otsu Binarization Threshold</label>
+                                    <span class="val-display" id="val-otsu">Auto (Otsu)</span>
+                                </div>
+                                <input type="range" class="custom-range" id="param-otsu" min="0" max="255" value="128">
+                                <span class="help-text">Converts grayscale pages into high contrast binary black-and-white.</span>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="control-header">
+                                    <label>FastNL Denoising (Strength)</label>
+                                    <span class="val-display" id="val-denoise">10</span>
+                                </div>
+                                <input type="range" class="custom-range" id="param-denoise" min="0" max="30" value="10">
+                                <span class="help-text">Filters scan noise, specs, and shadows. Higher reduces detail but cleans backgrounds.</span>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="control-header">
+                                    <label>Page Upscale Factor</label>
+                                    <span class="val-display" id="val-upscale">2x</span>
+                                </div>
+                                <input type="range" class="custom-range" id="param-upscale" min="1" max="4" value="2" step="0.5">
+                                <span class="help-text">Increases image resolution for small fonts before feeding into Tesseract OCR engine.</span>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="control-header">
+                                    <label>Tesseract OCR Page Segmentation Mode (PSM)</label>
+                                </div>
+                                <select class="custom-select" id="param-psm">
+                                    <option value="3">3 - Fully automatic page segmentation (Default)</option>
+                                    <option value="1">1 - Orientation and script detection only</option>
+                                    <option value="4">4 - Assume a single column of text of variable sizes</option>
+                                    <option value="6">6 - Assume a single uniform block of text</option>
+                                </select>
+                            </div>
+
+                            <button class="btn-primary w-full" id="apply-ocr-btn">
+                                <i class="fa-solid fa-save"></i> Save OpenCV Settings
+                            </button>
+                        </div>
+
+                        <!-- Before / After split visualizer -->
+                        <div class="glass-card ocr-preview-panel">
+                            <h3>Live Preprocessing Preview</h3>
+                            <p class="card-subtitle mb-4">Move the slider to compare raw student scan vs OpenCV preprocessed output.</p>
+                            
+                            <div class="image-comparison-slider" id="comparison-slider-container">
+                                <div class="image-wrapper before-image">
+                                    <!-- A mock layout to represent paper text -->
+                                    <div class="paper-page raw-scanned">
+                                        <div class="noisy-texture"></div>
+                                        <div class="paper-content">
+                                            <h2>Assignment 1: Algorithms</h2>
+                                            <p class="handwriting">Name: John Doe</p>
+                                            <p class="noisy-text">We implement quicksort using a pivot-based divide and conquer paradigm. In this experiment, we analyze quicksort's worst case O(n^2) when array is pre-sorted. This code executes in linear time in best-case scenarios with median-of-three pivot selectors.</p>
+                                            <div class="smudge shadow"></div>
+                                            <div class="smudge noise-spots"></div>
+                                        </div>
+                                    </div>
+                                    <span class="label-badge before-badge">Raw Scanned PDF Page</span>
+                                </div>
+
+                                <div class="image-wrapper after-image" id="preprocessed-side">
+                                    <div class="paper-page processed-binary">
+                                        <div class="paper-content">
+                                            <h2>Assignment 1: Algorithms</h2>
+                                            <p class="clean-binary">Name: John Doe</p>
+                                            <p class="clean-binary text-bold">We implement quicksort using a pivot-based divide and conquer paradigm. In this experiment, we analyze quicksort's worst case O(n^2) when array is pre-sorted. This code executes in linear time in best-case scenarios with median-of-three pivot selectors.</p>
+                                        </div>
+                                    </div>
+                                    <span class="label-badge after-badge">OpenCV Binarized Output (Tesseract Ready)</span>
+                                </div>
+
+                                <div class="slider-handle" id="slider-handle">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-button">
+                                        <i class="fa-solid fa-arrows-left-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Container for dynamic alerts -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Main JavaScript File -->
+    <script src="app.js"></script>
+</body>
+</html>

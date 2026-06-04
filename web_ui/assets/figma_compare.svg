@@ -1,0 +1,286 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14" />
+      <stop offset="100%" stop-color="#0b1120" />
+    </linearGradient>
+    <!-- Primary Indigo Gradient -->
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <!-- Red Accent Gradient -->
+    <linearGradient id="danger-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </linearGradient>
+    <!-- Card Glass Gradient -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141b2d" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#0f1524" stop-opacity="0.75" />
+    </linearGradient>
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <style>
+    .text-title { font-family: 'Outfit', 'Segoe UI', sans-serif; font-weight: 800; }
+    .text-semibold { font-family: 'Outfit', 'Segoe UI', sans-serif; font-weight: 600; }
+    .text-regular { font-family: 'Outfit', 'Segoe UI', sans-serif; font-weight: 400; }
+    .text-mono { font-family: 'Fira Code', monospace; }
+  </style>
+
+  <!-- CANVAS BACKGROUND -->
+  <rect width="1440" height="900" fill="url(#bg-grad)" />
+
+  <!-- SIDEBAR GROUP -->
+  <g id="sidebar" filter="url(#shadow)">
+    <!-- Sidebar Backplate -->
+    <rect width="260" height="900" fill="#0f1422" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+    
+    <!-- Logo Section -->
+    <g id="logo" transform="translate(24, 24)">
+      <!-- Logo Box -->
+      <rect width="36" height="36" rx="10" fill="url(#accent-grad)" />
+      <!-- Logo Icon Symbol -->
+      <path d="M18,10 L25,13 L25,20 C25,24.5 21,27.5 18,29 C15,27.5 11,24.5 11,20 L11,13 L18,10 Z" fill="#ffffff" />
+      <text x="50" y="25" fill="#ffffff" class="text-title" font-size="20">AuraCheck</text>
+      <rect x="164" y="8" width="30" height="18" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+      <text x="170" y="21" fill="#6b7280" class="text-semibold" font-size="10">v1.2</text>
+    </g>
+
+    <!-- Navigation List -->
+    <g id="nav-list" transform="translate(16, 100)">
+      <!-- Dashboard - Inactive -->
+      <g id="nav-dashboard">
+        <rect width="228" height="44" rx="8" fill="transparent" />
+        <rect x="16" y="14" width="6" height="16" rx="1" fill="#9ca3af" opacity="0.6" />
+        <rect x="25" y="14" width="6" height="8" rx="1" fill="#9ca3af" opacity="0.6" />
+        <rect x="25" y="24" width="6" height="6" rx="1" fill="#9ca3af" opacity="0.6" />
+        <text x="46" y="27" fill="#9ca3af" class="text-semibold" font-size="14">Dashboard</text>
+      </g>
+
+      <!-- Run Scan Link -->
+      <g id="nav-run-scan" transform="translate(0, 52)">
+        <rect width="228" height="44" rx="8" fill="transparent" />
+        <path d="M16,14 L28,14 L28,26 L16,26 Z" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linejoin="round" />
+        <path d="M22,14 L22,26" fill="none" stroke="#9ca3af" stroke-width="2" />
+        <text x="46" y="27" fill="#9ca3af" class="text-semibold" font-size="14">Run Scan</text>
+      </g>
+
+      <!-- Compare Documents Link - Active -->
+      <g id="nav-compare" transform="translate(0, 104)">
+        <rect width="228" height="44" rx="8" fill="url(#accent-grad)" />
+        <path d="M16,16 L22,22 L16,28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M28,16 L22,22 L28,28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="46" y="27" fill="#ffffff" class="text-semibold" font-size="14">Compare Documents</text>
+      </g>
+
+      <!-- OCR Config Link -->
+      <g id="nav-ocr" transform="translate(0, 156)">
+        <rect width="228" height="44" rx="8" fill="transparent" />
+        <circle cx="18" cy="18" r="3" fill="#9ca3af" />
+        <circle cx="28" cy="26" r="3" fill="#9ca3af" />
+        <line x1="14" y1="26" x2="23" y2="26" stroke="#9ca3af" stroke-width="2" />
+        <line x1="23" y1="18" x2="30" y2="18" stroke="#9ca3af" stroke-width="2" />
+        <text x="46" y="27" fill="#9ca3af" class="text-semibold" font-size="14">OCR Config</text>
+      </g>
+    </g>
+
+    <!-- User Profile at bottom -->
+    <g id="profile" transform="translate(16, 824)">
+      <circle cx="24" cy="24" r="20" fill="#4f46e5" />
+      <text x="24" y="29" fill="#ffffff" class="text-semibold" font-size="14" text-anchor="middle">AP</text>
+      <text x="56" y="20" fill="#ffffff" class="text-semibold" font-size="14">Aakash P.</text>
+      <text x="56" y="34" fill="#6b7280" class="text-regular" font-size="11">Academic Admin</text>
+    </g>
+  </g>
+
+  <!-- MAIN APP PANEL -->
+  <g id="main-panel" transform="translate(260, 0)">
+    
+    <!-- TOP HEADER -->
+    <g id="header">
+      <rect width="1180" height="70" fill="#080c14" opacity="0.5" />
+      <line x1="0" y1="70" x2="1180" y2="70" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+      
+      <!-- Search Input Mock -->
+      <g id="search" transform="translate(32, 17)">
+        <rect width="320" height="36" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+        <path d="M16,18 A4,4 0 1,1 24,18 A4,4 0 1,1 16,18 M22,22 L26,26" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" />
+        <text x="42" y="22" fill="#6b7280" class="text-regular" font-size="13">Search submissions, reports, and authors...</text>
+      </g>
+
+      <!-- Header actions (Right aligned) -->
+      <g id="header-actions" transform="translate(860, 16)">
+        <rect x="0" y="4" width="120" height="28" rx="14" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1" />
+        <circle cx="16" cy="18" r="4" fill="#10b981" />
+        <text x="28" y="22" fill="#10b981" class="text-semibold" font-size="11">System Active</text>
+
+        <g id="btn-scan" transform="translate(140, 0)">
+          <rect width="148" height="38" rx="8" fill="url(#accent-grad)" />
+          <path d="M16,14 L24,19 L16,24 Z" fill="#ffffff" />
+          <text x="36" y="24" fill="#ffffff" class="text-semibold" font-size="13">Start Batch Scan</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- CONTENT PORT -->
+    <g id="content" transform="translate(32, 100)">
+      
+      <!-- Page Title -->
+      <text x="0" y="10" fill="#ffffff" class="text-title" font-size="28">Pairwise Comparison Inspector</text>
+      <text x="0" y="32" fill="#9ca3af" class="text-regular" font-size="14">Side-by-side inspection of selected student submissions with highlighted matching sequences.</text>
+      
+      <!-- Export button -->
+      <g transform="translate(980, -15)">
+        <rect width="168" height="36" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+        <text x="38" y="22" fill="#cbd5e1" class="text-semibold" font-size="12">Export Analysis</text>
+        <path d="M18,22 L18,14 L26,14" fill="none" stroke="#cbd5e1" stroke-width="2" />
+        <line x1="18" y1="14" x2="25" y2="21" stroke="#cbd5e1" stroke-width="2" />
+      </g>
+
+      <!-- COMPARISON SELECTORS CARD -->
+      <g id="selector-bar" transform="translate(0, 60)" filter="url(#shadow)">
+        <rect width="1140" height="90" rx="14" fill="url(#card-grad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+        
+        <!-- Document 1 dropdown -->
+        <g id="sel-1" transform="translate(24, 18)">
+          <text x="0" y="12" fill="#6b7280" class="text-semibold" font-size="10">DOCUMENT 1</text>
+          <rect x="0" y="20" width="420" height="38" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          <text x="16" y="44" fill="#ffffff" class="text-semibold" font-size="13">sorting_final.pdf</text>
+          <path d="M390,36 L396,42 L402,36" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+        </g>
+
+        <!-- VS BADGE -->
+        <g id="vs-badge" transform="translate(488, 38)">
+          <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          <text x="20" y="25" fill="#6b7280" class="text-title" font-size="12" text-anchor="middle">VS</text>
+        </g>
+
+        <!-- Document 2 dropdown -->
+        <g id="sel-2" transform="translate(548, 18)">
+          <text x="0" y="12" fill="#6b7280" class="text-semibold" font-size="10">DOCUMENT 2</text>
+          <rect x="0" y="20" width="420" height="38" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          <text x="16" y="44" fill="#ffffff" class="text-semibold" font-size="13">sorting_v2_copied.pdf</text>
+          <path d="M390,36 L396,42 L402,36" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+        </g>
+
+        <!-- Similarity Score Pill -->
+        <g id="similarity-score" transform="translate(1012, 16)">
+          <rect width="104" height="58" rx="8" fill="url(#danger-grad)" filter="url(#shadow)" />
+          <text x="52" y="32" fill="#ffffff" class="text-title" font-size="24" text-anchor="middle">84%</text>
+          <text x="52" y="48" fill="rgba(255,255,255,0.8)" class="text-semibold" font-size="9" text-anchor="middle">MATCH</text>
+        </g>
+      </g>
+
+      <!-- SPLIT EDITORS ROW -->
+      <g id="editors-split" transform="translate(0, 174)">
+        
+        <!-- Left Editor Panel -->
+        <g id="editor-left" filter="url(#shadow)">
+          <rect width="555" height="520" rx="14" fill="url(#card-grad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          
+          <!-- Meta header -->
+          <rect width="555" height="52" fill="rgba(255,255,255,0.01)" />
+          <line x1="0" y1="52" x2="555" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+          <text x="20" y="32" fill="#ffffff" class="text-semibold" font-size="14">sorting_final.pdf</text>
+          <rect x="360" y="16" width="112" height="20" rx="4" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.2)" stroke-width="1" />
+          <text x="416" y="29" fill="#fb923c" class="text-semibold" font-size="9" text-anchor="middle">OCR (Tesseract)</text>
+          <text x="484" y="30" fill="#6b7280" class="text-regular" font-size="11">4,580 chars</text>
+
+          <!-- Text content blocks with highlights -->
+          <g id="text-left" transform="translate(20, 80)" fill="#9ca3af" class="text-regular" font-size="13" line-height="24">
+            <text x="0" y="20">In this laboratory report, we focus on Quicksort implementation</text>
+            
+            <!-- Highlighting plagiarised sequences -->
+            <rect x="-2" y="30" width="418" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="50" x2="416" y2="50" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="44" fill="#fca5a5" class="text-semibold">under the divide-and-conquer strategy. The algorithm</text>
+            
+            <rect x="-2" y="54" width="380" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="74" x2="378" y2="74" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="68" fill="#fca5a5" class="text-semibold">partitions an array based on a pivot element. We</text>
+            
+            <text x="0" y="92">evaluate the performance on sorted, reverse-sorted, and random</text>
+            <text x="0" y="116">arrays. The worst-case is O(N^2) when the array is sorted and the</text>
+            <text x="0" y="140">pivot is the smallest or largest element.</text>
+
+            <rect x="-2" y="150" width="430" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="170" x2="428" y2="170" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="164" fill="#fca5a5" class="text-semibold">To fix this, we apply median-of-three pivot selection,</text>
+
+            <rect x="-2" y="174" width="288" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="194" x2="286" y2="194" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="188" fill="#fca5a5" class="text-semibold">achieving O(N log N) on average. Stack frames</text>
+            
+            <text x="0" y="212">require O(log N) space. Quicksort runs faster than Merge Sort</text>
+            
+            <rect x="-2" y="222" width="460" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="242" x2="458" y2="242" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="236" fill="#fca5a5" class="text-semibold">due to cache locality and smaller constants, though Merge Sort</text>
+
+            <rect x="-2" y="246" width="374" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="266" x2="372" y2="266" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="260" fill="#fca5a5" class="text-semibold">offers stability and a worst-case of O(N log N).</text>
+          </g>
+        </g>
+
+        <!-- Right Editor Panel -->
+        <g id="editor-right" transform="translate(585, 0)" filter="url(#shadow)">
+          <rect width="555" height="520" rx="14" fill="url(#card-grad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          
+          <!-- Meta header -->
+          <rect width="555" height="52" fill="rgba(255,255,255,0.01)" />
+          <line x1="0" y1="52" x2="555" y2="52" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+          <text x="20" y="32" fill="#ffffff" class="text-semibold" font-size="14">sorting_v2_copied.pdf</text>
+          <rect x="360" y="16" width="112" height="20" rx="4" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.2)" stroke-width="1" />
+          <text x="416" y="29" fill="#fb923c" class="text-semibold" font-size="9" text-anchor="middle">OCR (Tesseract)</text>
+          <text x="484" y="30" fill="#6b7280" class="text-regular" font-size="11">4,550 chars</text>
+
+          <!-- Text content blocks with highlights -->
+          <g id="text-right" transform="translate(20, 80)" fill="#9ca3af" class="text-regular" font-size="13" line-height="24">
+            <text x="0" y="20">In this laboratory report, we focus on Quicksort implementation</text>
+            
+            <!-- Highlighting plagiarised sequences -->
+            <rect x="-2" y="30" width="418" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="50" x2="416" y2="50" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="44" fill="#fca5a5" class="text-semibold">under the divide-and-conquer strategy. The algorithm</text>
+            
+            <rect x="-2" y="54" width="380" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="74" x2="378" y2="74" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="68" fill="#fca5a5" class="text-semibold">partitions an array based on a pivot element. We</text>
+            
+            <text x="0" y="92">evaluate the performance on sorted, reverse-sorted, and random</text>
+            <text x="0" y="116">arrays. The worst-case is O(N^2) when the array is sorted and the</text>
+            <text x="0" y="140">pivot is the smallest or largest element.</text>
+
+            <rect x="-2" y="150" width="430" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="170" x2="428" y2="170" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="164" fill="#fca5a5" class="text-semibold">To fix this, we apply median-of-three pivot selection,</text>
+
+            <rect x="-2" y="174" width="288" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="194" x2="286" y2="194" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="188" fill="#fca5a5" class="text-semibold">achieving O(N log N) on average. Stack frames</text>
+            
+            <text x="0" y="212">require O(log N) space. Quicksort runs faster than Merge Sort</text>
+            
+            <rect x="-2" y="222" width="460" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="242" x2="458" y2="242" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="236" fill="#fca5a5" class="text-semibold">due to cache locality and smaller constants, though Merge Sort</text>
+
+            <rect x="-2" y="246" width="374" height="20" fill="rgba(239, 68, 68, 0.2)" rx="2" />
+            <line x1="-2" y1="266" x2="372" y2="266" stroke="#ef4444" stroke-width="2" />
+            <text x="0" y="260" fill="#fca5a5" class="text-semibold">offers stability and a worst-case of O(N log N).</text>
+            
+            <!-- Additional copy block differences -->
+            <text x="0" y="284" fill="#ffffff">Additionally, we implement bubble sort for baseline metrics.</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
